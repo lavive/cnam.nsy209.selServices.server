@@ -34,13 +34,16 @@ public class MessageDaoBean implements MessageDaoLocal {
 //	@EJB
 //	private MemberDaoLocal memberDao;
 
-	@Interceptors({ notification.interceptor.InterceptorToNotify.class}) 
+	//@Interceptors({ notification.interceptor.InterceptorToNotify.class}) 
 	public void create(MessageEntity entity) {
+
+		this.notificationFactory.setMessage(entity);
 		entity.setActive(true);
 		entity.setDateLastUpdate(new Date(System.currentTimeMillis()));
 		this.entityManager.persist(entity);
 		this.entityManager.flush();
-		this.notificationFactory.setMessage(entity);
+		//this.notificationFactory.setMessage(entity);
+		this.notificationFactory.create();
 
 	}
 
