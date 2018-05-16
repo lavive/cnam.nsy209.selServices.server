@@ -10,17 +10,35 @@ CNAM NSY209 project 2018 - backend side for SEL associations
 * Maven pluggin installed
 * Glassfish server synchronized in Eclipse
 
+### POSTGRESQL Configurations
+* PostgreSQL is running
+* open **pgadmin** in your browser (localhost:5050)
+* create a database 'yourDataBase' with your postgresql credentials
+
 ### GLASSFISH Configurations
-* 
-* Clone this project
+* Edit 'settings.xml' file of this repository and change tag path <...home> by your GLASSFISH installation path
+* Save file and put it in your ‘.m2’ folder of your maven installation
+* Start GLASSFISH
+* Open your browser and type url ‘localhost:4848’ to open GLASSFISH Administration tools
+* Go to 'Ressources/JDBC/JDBC-CONNECTION-POOL' to create a connection pool named ‘postgresqlpool’:
+  * Ressource type : javax.sql.ConnectionPoolDataSource 
+  * Datasource Classname : org.postgresql.ds.PGConnectionPoolDataSource)
+* In 'Additonnal Properties' tag add 2 properties (User – yourPostgreUserName et Password – yourPostgrePassword)
+* Put 'PortNumber' to 5432
+* Go to Resources/JDBC/JDBC Resources to create a new resource named ‘jdbc/yourDataBase’
+* Select ‘PostgresqlPool’ as his Pool Name
+
 ### Process
+* Clone this project
 * import this project in Eclipse
-* Go to 'RetrofitBuilder' file in package *cnam.nsy209.selServices.association.server.webService*
-* Change **BASE_URL** into machine address where **cnam.nsy209.selServices.restServie** will be installed 
+* Open 'persistence.xml’ file under 'META-INF' folder
+* change *<jta-data-source>jdbc/test</jta-data-source>* in *<jta-data-source>jdbc/yourDataBase</jta-data-source>*
+* change properties ‘javax.persistence.jdbc...’ according to your configurations above
 * Go to 'run Configurations' -> right click on 'Maven Build' -> 'new'
-* At the 'Main' tab fill 'Goals' as **verify**
+* At the 'Main' tab fill 'Goals' as **clean install**
 * Click on 'run'
-* A '.war' file has been generated
-* You can find it in the Eclipse Workspace folder, go to project folder -> 'target'
-* Start the web server and install the 'war' on it
-* open your favorite browser and type the web app addess
+* make sure GLASSFISH is running
+* Go to 'run Configurations' -> right click on 'Maven Build' -> 'new'
+* At the 'Main' tab fill 'Goals' as **glassfish:deploy** or **glassfish:redeploy**
+* Click on 'run'
+* The project is deployed on GLASSFISH
