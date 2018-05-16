@@ -1,5 +1,5 @@
 # cnam.nsy209.selServices.server
-CNAM NSY209 project 2018 - backend side for SEL associations
+CNAM NSY209 project 2018 - backend side for SEL Services
 
 ## Installation
 ### Pre-requisites
