@@ -8,6 +8,15 @@ import notification.suscriber.interceptor.strategy.bean.EnumSuscriberInterceptor
 import notification.suscriber.interceptor.strategy.local.SuscriberInterceptorStrategyContext;
 import notification.suscriber.local.SuscriberLocal;
 
+/**
+ * interceptor to launch sending notification by email
+ * 
+ * @author lavive
+ * 
+ * note: not used for instance
+ *
+ **/
+
 
 public class SuscriberForEmailInterceptor implements SuscriberInterceptor{
 	

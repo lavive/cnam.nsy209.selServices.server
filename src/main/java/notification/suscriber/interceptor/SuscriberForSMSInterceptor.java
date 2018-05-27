@@ -8,6 +8,15 @@ import notification.suscriber.interceptor.strategy.bean.EnumSuscriberInterceptor
 import notification.suscriber.interceptor.strategy.local.SuscriberInterceptorStrategyContext;
 import notification.suscriber.local.SuscriberLocal;
 
+/**
+ * interceptor to launch sending notification by sms
+ * 
+ * @author lavive
+ * 
+ * note: not used for instance
+ *
+ **/
+
 
 public class SuscriberForSMSInterceptor implements SuscriberInterceptor {
 	
