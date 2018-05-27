@@ -2,6 +2,13 @@ package shared.dto;
 
 import java.io.Serializable;
 
+/**
+ * DTO picturing supply and demand
+ * 
+ * @author lavive
+ *
+ */
+
 public class SupplyDemandDto implements Serializable{
 
 	/**

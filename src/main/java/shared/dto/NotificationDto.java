@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DTO picturing notification
+ * 
+ * @author lavive
+ *
+ */
+
 public class NotificationDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

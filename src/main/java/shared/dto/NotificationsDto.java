@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * DTO picturing notifications
+ * 
+ * @author lavive
+ *
+ */
+
+/**
  * Created by lavive on 23/09/17.
  */
 

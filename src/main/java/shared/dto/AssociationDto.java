@@ -1,5 +1,12 @@
 package shared.dto;
 
+/**
+ * DTO picturing association
+ * 
+ * @author lavive
+ *
+ */
+
 public class AssociationDto extends PersonDto {
 
 	/**

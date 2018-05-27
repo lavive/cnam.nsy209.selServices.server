@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DTO picturing wealth sheet
+ * 
+ * @author lavive
+ *
+ */
+
 
 public class WealthSheetDto implements Serializable{
 
@@ -14,8 +21,6 @@ public class WealthSheetDto implements Serializable{
 	
 	private Long id;
 	
-	//private MemberDto member;
-
 	private String initialAccount;
 
 	private String finalAccount;
@@ -32,14 +37,6 @@ public class WealthSheetDto implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-//	public MemberDto getMember() {
-//		return member;
-//	}
-//
-//	public void setMember(MemberDto member) {
-//		this.member = member;
-//	}
 
 	public String getInitialAccount() {
 		return initialAccount;

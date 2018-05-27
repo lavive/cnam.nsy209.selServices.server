@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DTO picturing messages
+ * 
+ * @author lavive
+ *
+ */
+
 public class MessagesDto implements Serializable {
 
     /**

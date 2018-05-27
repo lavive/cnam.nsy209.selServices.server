@@ -2,6 +2,13 @@ package shared.dto;
 
 import java.io.Serializable;
 
+/**
+ * DTO picturing person
+ * 
+ * @author lavive
+ *
+ */
+
 public class PersonDto implements Serializable{
 	
 	/**

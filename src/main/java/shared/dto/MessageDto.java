@@ -2,6 +2,13 @@ package shared.dto;
 
 import java.io.Serializable;
 
+/**
+ * DTO picturing message
+ * 
+ * @author lavive
+ *
+ */
+
 
 
 public class MessageDto implements Serializable{
@@ -16,9 +23,7 @@ public class MessageDto implements Serializable{
 	private String title;
 	
 	private String text;
-	
-	//private boolean state;
-	
+		
 	private PersonDto emitterPerson;
 	
 
@@ -47,14 +52,6 @@ public class MessageDto implements Serializable{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-//	public boolean isState() {
-//		return state;
-//	}
-//
-//	public void setState(boolean state) {
-//		this.state = state;
-//	}
 
 	public PersonDto getEmitterPerson() {
 		return emitterPerson;

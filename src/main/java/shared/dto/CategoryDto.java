@@ -2,6 +2,13 @@ package shared.dto;
 
 import java.io.Serializable;
 
+/**
+ * DTO picturing category
+ * 
+ * @author lavive
+ *
+ */
+
 
 
 public class CategoryDto implements Serializable {

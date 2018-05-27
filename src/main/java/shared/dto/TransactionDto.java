@@ -2,6 +2,13 @@ package shared.dto;
 
 import java.io.Serializable;
 
+/**
+ * DTO picturing transaction
+ * 
+ * @author lavive
+ *
+ */
+
 public class TransactionDto implements Serializable{
 	
 	/**

@@ -1,5 +1,12 @@
 package shared.dto;
 
+/**
+ * Enumeration picturing supply demand attributes
+ * 
+ * @author lavive
+ *
+ */
+
 public enum EnumSupplyDemandDto {
 	SUPPLY("supply"),
 	DEMAND("demand");

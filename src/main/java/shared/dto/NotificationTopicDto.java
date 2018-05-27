@@ -2,6 +2,13 @@ package shared.dto;
 
 import java.io.Serializable;
 
+/**
+ * DTO picturing notification topic
+ * 
+ * @author lavive
+ *
+ */
+
 public class NotificationTopicDto implements Serializable{
 
 	private static final long serialVersionUID = 1L;

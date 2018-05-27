@@ -3,6 +3,13 @@ package shared.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DTO picturing member
+ * 
+ * @author lavive
+ *
+ */
+
 public class MemberDto extends PersonDto{
 	
 	
@@ -12,13 +19,9 @@ public class MemberDto extends PersonDto{
 	
 	private String mobileId;
 	
-	//private List<SupplyDemandDto> supplyDemand = new ArrayList<SupplyDemandDto>();
-	
 	private List<Long> supplyDemandIds = new ArrayList<Long>();
 	
 	private WealthSheetDto wealthSheet;
-	
-	//private List<NotificationDto> notifications = new ArrayList<NotificationDto>();
 	
 	private List<Long> notificationIds = new ArrayList<Long>();
 
@@ -41,14 +44,6 @@ public class MemberDto extends PersonDto{
 	public void setMobileId(String mobileId) {
 		this.mobileId = mobileId;
 	}
-
-//	public List<SupplyDemandDto> getSupplyDemand() {
-//		return supplyDemand;
-//	}
-//
-//	public void setSupplyDemand(List<SupplyDemandDto> supplyDemand) {
-//		this.supplyDemand = supplyDemand;
-//	}
 
 	public WealthSheetDto getWealthSheet() {
 		return wealthSheet;
@@ -73,14 +68,6 @@ public class MemberDto extends PersonDto{
 	public void setSupplyDemandIds(List<Long> supplyDemandIds) {
 		this.supplyDemandIds = supplyDemandIds;
 	}
-
-//	public List<NotificationDto> getNotifications() {
-//		return notifications;
-//	}
-//
-//	public void setNotifications(List<NotificationDto> notifications) {
-//		this.notifications = notifications;
-//	}
 	
 
 	
