@@ -15,6 +15,17 @@ import dao.local.MemberDaoLocal;
 import dao.local.NotificationDaoLocal;
 import notification.constants.EnumTopicNotification;
 
+/**
+ * Interceptor to launch notification creation concerning association
+ * 
+ * @author lavive
+ * 
+ * note: 
+ *  - to fix: does not work correctly
+ *  - internationalization has to be added
+ *
+ */
+
 public class AssociationInterceptorToNotify {
 
 	@EJB
@@ -25,22 +36,12 @@ public class AssociationInterceptorToNotify {
 	
 	@EJB
 	private NotificationDaoLocal notificationDao;
-		
-//	private Map<EnumAssociationAttribute,String> mapAttributeValue;
-//	
-//	public void setMapAttributeValue(Map<EnumAssociationAttribute,String> mapAttributeValue){
-//		this.mapAttributeValue = mapAttributeValue;
-//	}
 
 	@AroundInvoke
 	public Object create(InvocationContext ic) throws Exception {
 		Object result = ic.proceed();
 		
-		//List<NotificationEntity> notifications = new ArrayList<NotificationEntity>();
-		
 		NotificationEntity notification = createAssociationChange();
-		
-		//notifications.add(notification);
 		
 		return result;
 	}
@@ -58,9 +59,6 @@ public class AssociationInterceptorToNotify {
 		String title = association.getName()+": "+event;
 		
 		String attributeValues ="";
-//		for(EnumAssociationAttribute attribute:this.mapAttributeValue.keySet()){
-//			attributeValues += attribute.getWording()+": "+this.mapAttributeValue.get(attribute)+"; ";
-//		}
 		String text = "Les modification concernent: "+attributeValues;
 		
 		List<MemberEntity> memberToNotify = memberDao.getAllMembers();
