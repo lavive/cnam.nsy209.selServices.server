@@ -1,5 +1,12 @@
 package dao.constants;
 
+/**
+ * Enumeration picturing AssociationEntity attributes
+ * 
+ * @author lavive
+ *
+ */
+
 public enum EnumAssociationAttribute {
 	NAME("Nom"),
 	POSTAL_CODE("Code postal"),

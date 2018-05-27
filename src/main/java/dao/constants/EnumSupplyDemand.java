@@ -1,5 +1,12 @@
 package dao.constants;
 
+/**
+ * Enumeration picturing supply or demand attributes for SupplyDemandEntity
+ * 
+ * @author lavive
+ *
+ */
+
 public enum EnumSupplyDemand {
 	SUPPLY("supply"),
 	DEMAND("demand");
