@@ -10,6 +10,13 @@ import dao.entity.MemberEntity;
 import dao.entity.NotificationEntity;
 import notification.suscriber.local.SuscriberLocal;
 
+/**
+ * Bean to set members to be notified
+ * 
+ * @author lavive
+ *
+ */
+
 @Singleton
 public class SuscriberBean implements SuscriberLocal {
 	
