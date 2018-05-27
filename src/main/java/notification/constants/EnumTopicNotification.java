@@ -1,5 +1,14 @@
 package notification.constants;
 
+/**
+ * Enumeration picturing the type of notification to be created
+ * 
+ * @author lavive
+ * 
+ * Note: internationalization has to be added
+ *
+ */
+
 public enum EnumTopicNotification {
 	NEW_MEMBER("Nouveau membre"),
 	MEMBER_LEAVING("Départ d’un Membre"),
