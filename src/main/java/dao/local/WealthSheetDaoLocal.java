@@ -7,6 +7,13 @@ import javax.ejb.Local;
 import dao.entity.TransactionEntity;
 import dao.entity.WealthSheetEntity;
 
+/**
+ * Bean to manage WealthSheetEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Local
 public interface WealthSheetDaoLocal extends CommonDao<WealthSheetEntity>{
 	

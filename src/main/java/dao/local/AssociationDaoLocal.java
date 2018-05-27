@@ -7,6 +7,13 @@ import javax.ejb.Local;
 import dao.entity.AssociationEntity;
 import dao.entity.MemberEntity;
 
+/**
+ * Bean to manage AssociationEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Local
 public interface AssociationDaoLocal extends CommonDao<AssociationEntity> {
 	

@@ -11,6 +11,13 @@ import dao.entity.NotificationEntity;
 import dao.entity.SupplyDemandEntity;
 import dao.entity.WealthSheetEntity;
 
+/**
+ * Bean to manage MemberEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Local
 public interface MemberDaoLocal extends CommonDao<MemberEntity>{
 	

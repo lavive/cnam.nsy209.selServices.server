@@ -6,6 +6,13 @@ import javax.ejb.Local;
 
 import dao.entity.NotificationEntity;
 
+/**
+ * Bean to manage NotificationEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Local
 public interface NotificationDaoLocal extends CommonDao<NotificationEntity> {
 	

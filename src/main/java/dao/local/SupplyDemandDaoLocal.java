@@ -6,6 +6,13 @@ import javax.ejb.Local;
 
 import dao.entity.SupplyDemandEntity;
 
+/**
+ * Bean to manage SupplyDemandEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Local
 public interface SupplyDemandDaoLocal extends CommonDao<SupplyDemandEntity>{
 	
