@@ -17,6 +17,14 @@ import shared.dto.SupplyDemandDto;
 import shared.dto.TransactionDto;
 import shared.dto.WealthSheetDto;
 
+/**
+ * bean façade  to provide services to clients
+ * 
+ * @author lavive
+ * 
+ *
+ **/
+
 @Remote
 public interface ServicesDao {
 	
@@ -27,7 +35,6 @@ public interface ServicesDao {
 	public void createMessage(MessageDto message);
 	public void createNotification(NotificationDto notification);
 	public void createSupplyDemand(SupplyDemandDto supplyDemand);
-	//public void createMemberJoinNotifications(MemberJoinNotificationsDto memberJoinNotifications);
 	public void addNotificationToMember(NotificationDto notification,MemberDto member);
 	
 	public void addTransaction(TransactionDto transaction);
@@ -100,7 +107,4 @@ public interface ServicesDao {
 	/* wealthSheet */
 	public List<WealthSheetDto> getAllWealthSheet();
 	public TransactionDto getTransaction(long transactionId);
-	
-	/* rest services */
-//	public JSONObject getAllMembersRest();
 }
