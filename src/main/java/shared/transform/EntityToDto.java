@@ -28,6 +28,13 @@ import shared.dto.SupplyDemandDto;
 import shared.dto.TransactionDto;
 import shared.dto.WealthSheetDto;
 
+/**
+ * Class to transform Entity to Dto
+ * 
+ * @author lavive
+ *
+ */
+
 
 
 public class EntityToDto {
@@ -79,15 +86,7 @@ public class EntityToDto {
 			memberDto.setPassword(memberEntity.getPassword());
 			
 			memberDto.setWealthSheet(wealthSheetEntityToDto(memberEntity.getWealthSheet()));
-			
-//			ArrayList<SupplyDemandDto> supplyDemandsDto = new ArrayList<SupplyDemandDto>();
-//			if(memberEntity.getSupplyDemand() != null) {
-//				for(SupplyDemandEntity supplyDemandEntity:memberEntity.getSupplyDemand()){
-//					supplyDemandsDto.add(supplyDemandEntityToDto(supplyDemandEntity));
-//				}
-//			}
-//			memberDto.setSupplyDemand(supplyDemandsDto);
-//			
+
 			ArrayList<Long> supplyDemandIds = new ArrayList<Long>();
 			if(memberEntity.getSupplyDemand() != null) {
 				for(SupplyDemandEntity supplyDemandEntity:memberEntity.getSupplyDemand()){
@@ -116,7 +115,6 @@ public class EntityToDto {
 			messageDto.setId(messagenEntity.getId());
 			messageDto.setTitle(messagenEntity.getTitle());
 			messageDto.setText(messagenEntity.getText());
-			//messageDto.setState(messagenEntity.isState());
 			messageDto.setEmitterPerson(personEntityToDto(messagenEntity.getTransmitterPerson()));
 		}
 		
@@ -177,7 +175,6 @@ public class EntityToDto {
 			wealthSheetDto.setId(wealthSheetEntity.getId());
 			wealthSheetDto.setInitialAccount(wealthSheetEntity.getInitialAccount().toString());
 			wealthSheetDto.setFinalAccount(wealthSheetEntity.getFinalAccount().toString());
-			//wealthSheetDto.setMember(memberEntityToDto(WealthSheetEntity.getMember()));
 			
 			ArrayList<TransactionDto> transactionsDto = new ArrayList<TransactionDto>();
 			if(wealthSheetEntity.getTransactions() != null) {
@@ -224,25 +221,6 @@ public class EntityToDto {
 		
 		return notificationDto;
 	}
-	
-//	public static MemberJoinNotificationsDto memberJoinNotificationsEntityToDto(MemberJoinNotificationsEntity memberJoinNotificationsEntity) {
-//		MemberJoinNotificationsDto memberJoinNotificationsDto = new MemberJoinNotificationsDto();
-//		
-//		if(memberJoinNotificationsEntity != null) {
-//			memberJoinNotificationsDto.setId(memberJoinNotificationsEntity.getId());
-//			memberJoinNotificationsDto.setMember(memberEntityToDto(memberJoinNotificationsEntity.getMember()));
-//			
-//			ArrayList<NotificationDto> notificationsDto = new ArrayList<NotificationDto>();
-//			if(memberJoinNotificationsEntity.getNotifications() != null) {
-//				for(NotificationEntity notificationEntity: memberJoinNotificationsEntity.getNotifications()) {
-//					notificationsDto.add(notificationEntityToDto(notificationEntity));
-//				}
-//			}
-//			memberJoinNotificationsDto.setNotifications(notificationsDto);
-//		}
-//		
-//		return memberJoinNotificationsDto;
-//	}
 	
 	/* Array */
 	public static List<CategoryDto>  categoryEntityToDto(List<CategoryEntity> categoryEntities){

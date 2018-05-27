@@ -26,6 +26,13 @@ import shared.dto.SupplyDemandDto;
 import shared.dto.TransactionDto;
 import shared.dto.WealthSheetDto;
 
+/**
+ * Class to transform Dto to Entity
+ * 
+ * @author lavive
+ *
+ */
+
 
 public class DtoToEntity {
 	
@@ -77,22 +84,6 @@ public class DtoToEntity {
             		
 			if(memberDto.getWealthSheet() != null)
 				memberEntity.setWealthSheet(wealthSheetDtoToEntity(memberDto.getWealthSheet()));
-			
-//			ArrayList<SupplyDemandEntity> supplyDemandsEntity = new ArrayList<SupplyDemandEntity>();
-//			if(memberDto.getSupplyDemand() != null) {
-//				for(SupplyDemandDto supplyDemandDto:memberDto.getSupplyDemand()){
-//					supplyDemandsEntity.add(supplyDemandDtoToEntity(supplyDemandDto));
-//				}
-//			}
-//			memberEntity.setSupplyDemand(supplyDemandsEntity);
-			
-//			ArrayList<NotificationEntity> notificationsEntity = new ArrayList<NotificationEntity>();
-//			if(memberDto.getNotifications() != null) {
-//				for(NotificationDto notificationDto:memberDto.getNotifications()){
-//					notificationsEntity.add(notificationDtoToEntity(notificationDto));
-//				}
-//			}
-//			memberEntity.setNotifications(notificationsEntity);
 		}
 		
 		return memberEntity;
@@ -105,7 +96,6 @@ public class DtoToEntity {
 			messageEntity.setId(messageDto.getId());
 			messageEntity.setTitle(messageDto.getTitle());
 			messageEntity.setText(messageDto.getText());
-			//messageEntity.setState(messageDto.isState());
 			messageEntity.setTransmitterPerson(personDtoToEntity(messageDto.getEmitterPerson()));
 		}
 		
@@ -137,9 +127,6 @@ public class DtoToEntity {
 		if(transactionDto != null) {
 			transactionEntity.setId(transactionDto.getId());
 			transactionEntity.setAmount(BigDecimal.valueOf(Double.parseDouble(transactionDto.getAmount())));
-//			transactionEntity.setCreditorMember(memberDtoToEntity(transactionDto.getCreditorMember()));
-//			transactionEntity.setDebtorMember(memberDtoToEntity(transactionDto.getDebtorMember()));
-//			transactionEntity.setSupplyDemand(supplyDemandDtoToEntity(transactionDto.getSupplyDemand()));
 		}
 		
 		return transactionEntity;
@@ -166,7 +153,7 @@ public class DtoToEntity {
 			if(WealthSheetDto.getId() != null) wealthSheetEntity.setId(WealthSheetDto.getId());
 			if(WealthSheetDto.getInitialAccount() != null) wealthSheetEntity.setInitialAccount(BigDecimal.valueOf(Double.parseDouble(WealthSheetDto.getInitialAccount())));
 			if(WealthSheetDto.getFinalAccount() != null) wealthSheetEntity.setFinalAccount(BigDecimal.valueOf(Double.parseDouble(WealthSheetDto.getFinalAccount())));
-			//wealthSheetEntity.setMember(memberDtoToEntity(WealthSheetDto.getMember()));
+			
 			
 			ArrayList<TransactionEntity> transactionsEntity = new ArrayList<TransactionEntity>();
 			if(WealthSheetDto.getTransactions() != null) {
@@ -213,25 +200,6 @@ public class DtoToEntity {
 		
 		return notificationEntity;
 	}
-	
-//	public static MemberJoinNotificationsEntity memberJoinNotificationsDtoToEntity(MemberJoinNotificationsDto memberJoinNotificationsDto) {
-//		MemberJoinNotificationsEntity memberJoinNotificationsEntity = new MemberJoinNotificationsEntity();
-//		
-//		if(memberJoinNotificationsDto != null) {
-//			memberJoinNotificationsEntity.setId(memberJoinNotificationsDto.getId());
-//			memberJoinNotificationsEntity.setMember(memberDtoToEntity(memberJoinNotificationsDto.getMember()));
-//			
-//			ArrayList<NotificationEntity> notificationsEntity = new ArrayList<NotificationEntity>();
-//			if(memberJoinNotificationsDto.getNotifications() != null) {
-//				for(NotificationDto notificationDto: memberJoinNotificationsDto.getNotifications()) {
-//					notificationsEntity.add(notificationDtoToEntity(notificationDto));
-//				}
-//			}
-//			memberJoinNotificationsEntity.setNotifications(notificationsEntity);
-//		}
-//		
-//		return memberJoinNotificationsEntity;
-//	}
 	
 	/* Array */
 	

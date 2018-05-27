@@ -13,8 +13,15 @@ import dao.entity.SupplyDemandEntity;
 import dao.entity.TransactionEntity;
 import dao.entity.WealthSheetEntity;
 
+/**
+ * Class to transform Entity to JSON
+ * 
+ * @author lavive
+ *
+ * note: to fix:Not working + put key string in final static String
+ */
+
 public class JSONToEntity {
-	/* Not working + put key string in final static String */ 
 	
 	public static SupplyDemandEntity supplyDemandJSONToEntity(JSONObject jObject ){
 		SupplyDemandEntity supplyDemandEntity = new SupplyDemandEntity();
@@ -46,14 +53,6 @@ public class JSONToEntity {
 			memberEntity.setPassword(jObject.getString("password"));
 			
 			memberEntity.setWealthSheet(wealthSheetJSONToEntity(jObject.getJSONObject("wealthSheet")));
-			
-//			JSONArray jArray = jObject.getJSONArray("supplyDemand");
-//			List<SupplyDemandEntity> supplyDemands = new ArrayList<SupplyDemandEntity>();
-//			for(int i = 0 ; i < jArray.length(); i++){
-//				SupplyDemandEntity supplyDemandEntity = supplyDemandJSONToEntity((JSONObject) jArray.get(i));
-//				supplyDemands.add(supplyDemandEntity);
-//			}
-//			memberEntity.setSupplyDemand(supplyDemands);
 		}
 		
 		
@@ -68,7 +67,6 @@ public class JSONToEntity {
 			wealthSheetEntity.setInitialAccount(jObject.getBigDecimal("initialAccount"));
 			wealthSheetEntity.setFinalAccount(jObject.getBigDecimal("finalAccount"));	
 			
-			//wealthSheetEntity.setMember(memberJSONToEntity(jObject.getJSONObject("member")));
 			
 			JSONArray jArray = jObject.getJSONArray("transactions");
 			List<TransactionEntity> transactions = new ArrayList<TransactionEntity>();
@@ -89,11 +87,6 @@ public class JSONToEntity {
 			transactionEntity.setId(jObject.getLong("id"));
 			transactionEntity.setAmount(jObject.getBigDecimal("amount"));
 			
-//			transactionEntity.setCreditorMember(memberJSONToEntity(jObject.getJSONObject("creditorMember")));
-//			
-//			transactionEntity.setDebtorMember(memberJSONToEntity(jObject.getJSONObject("debtorMember")));
-//			
-//			transactionEntity.setSupplyDemand(supplyDemandJSONToEntity(jObject.getJSONObject("supplyDemand")));
 		}
 		
 		return transactionEntity;

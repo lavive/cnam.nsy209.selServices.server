@@ -17,6 +17,13 @@ import shared.dto.SupplyDemandDto;
 import shared.dto.TransactionDto;
 import shared.dto.WealthSheetDto;
 
+/**
+ * Class to transform Dto to JSON
+ * 
+ * @author lavive
+ *
+ */
+
 public class DtoToJSON {
 	
 

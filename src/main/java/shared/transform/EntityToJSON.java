@@ -17,8 +17,15 @@ import dao.entity.SupplyDemandEntity;
 import dao.entity.TransactionEntity;
 import dao.entity.WealthSheetEntity;
 
+/**
+ * Class to transform Entity to JSON
+ * 
+ * @author lavive
+ *
+ * note: to fix:Not working + put key string in final static String
+ */
+
 public class EntityToJSON {
-	/* Not working + put key string in final static String */ 
 	
 
 	
