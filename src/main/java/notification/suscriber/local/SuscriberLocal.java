@@ -7,6 +7,13 @@ import javax.ejb.Local;
 import dao.entity.MemberEntity;
 import dao.entity.NotificationEntity;
 
+/**
+ * Bean to set members to be notified
+ * 
+ * @author lavive
+ *
+ */
+
 @Local
 public interface SuscriberLocal {
 	
