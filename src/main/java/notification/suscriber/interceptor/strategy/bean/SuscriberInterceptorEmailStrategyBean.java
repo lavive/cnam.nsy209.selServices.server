@@ -17,6 +17,15 @@ import dao.entity.MemberEntity;
 import notification.suscriber.interceptor.strategy.local.SuscriberInterceptorEmailStrategy;
 import notification.suscriber.local.SuscriberLocal;
 
+/**
+ * Bean sending notification by email
+ * 
+ * @author lavive
+ * 
+ * note: to implement, this code is only test
+ *
+ */
+
 @Singleton
 public class SuscriberInterceptorEmailStrategyBean implements SuscriberInterceptorEmailStrategy {
 

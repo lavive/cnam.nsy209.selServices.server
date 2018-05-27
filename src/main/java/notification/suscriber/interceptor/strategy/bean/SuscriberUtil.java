@@ -1,5 +1,14 @@
 package notification.suscriber.interceptor.strategy.bean;
 
+/**
+ * Util class
+ * 
+ * @author lavive
+ * 
+ * note: not used for instance
+ *
+ **/
+
 public class SuscriberUtil {	
 	
 //	

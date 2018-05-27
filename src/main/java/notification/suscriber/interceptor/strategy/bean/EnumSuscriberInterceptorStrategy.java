@@ -1,5 +1,12 @@
 package notification.suscriber.interceptor.strategy.bean;
 
+/**
+ * Enumeration picturing each strategy of sending notification 
+ * 
+ * @author lavive
+ *
+ */
+
 
 
 public enum EnumSuscriberInterceptorStrategy {

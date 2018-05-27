@@ -5,6 +5,15 @@ import javax.ejb.Singleton;
 import notification.suscriber.interceptor.strategy.local.SuscriberInterceptorSmsStrategy;
 import notification.suscriber.local.SuscriberLocal;
 
+/**
+ * Bean sending notification by sms
+ * 
+ * @author lavive
+ * 
+ * note: to implement
+ *
+ */
+
 @Singleton
 public class SuscriberInterceptorSmsStrategyBean implements SuscriberInterceptorSmsStrategy {
 	
