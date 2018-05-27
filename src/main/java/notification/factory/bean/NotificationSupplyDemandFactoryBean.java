@@ -18,6 +18,13 @@ import dao.local.NotificationDaoLocal;
 import notification.constants.EnumTopicNotification;
 import notification.factory.local.NotificationSupplyDemandFactoryLocal;
 
+/**
+ * Bean to create notification concerning supply and demand
+ * 
+ * @author lavive
+ *
+ */
+
 @Singleton
 @TransactionAttribute
 public class NotificationSupplyDemandFactoryBean implements NotificationSupplyDemandFactoryLocal {
@@ -52,6 +59,7 @@ public class NotificationSupplyDemandFactoryBean implements NotificationSupplyDe
 		this.newSupply = supply;
 	}
 	
+	/* create notifications when a supply or demand is added */
 	@Override
 	public List<NotificationEntity> create() {
 		List<NotificationEntity> notifications = new ArrayList<NotificationEntity>();

@@ -19,6 +19,13 @@ import dao.local.NotificationDaoLocal;
 import notification.constants.EnumTopicNotification;
 import notification.factory.local.NotificationAssociationFactoryLocal;
 
+/**
+ * Bean to create notification concerning association
+ * 
+ * @author lavive
+ *
+ */
+
 @Singleton
 @TransactionAttribute
 public class NotificationAssociationFactoryBean implements NotificationAssociationFactoryLocal {
@@ -39,6 +46,7 @@ public class NotificationAssociationFactoryBean implements NotificationAssociati
 		this.mapAttributeValue = mapAttributeValue;
 	}
 
+	/* create a notification with the association changes */
 	@Override
 	public List<NotificationEntity> create() {
 		List<NotificationEntity> notifications = new ArrayList<NotificationEntity>();

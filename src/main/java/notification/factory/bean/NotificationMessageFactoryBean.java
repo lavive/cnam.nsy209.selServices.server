@@ -18,6 +18,15 @@ import dao.local.NotificationDaoLocal;
 import notification.constants.EnumTopicNotification;
 import notification.factory.local.NotificationMessageFactoryLocal;
 
+/**
+ * Bean to create notification concerning message
+ * 
+ * @author lavive
+ * 
+ * note: internazionalization has to be added
+ *
+ */
+
 @Singleton
 @TransactionAttribute
 public class NotificationMessageFactoryBean implements NotificationMessageFactoryLocal {
@@ -37,7 +46,9 @@ public class NotificationMessageFactoryBean implements NotificationMessageFactor
 	public void setMessage(MessageEntity message){
 		this.message = message;
 	}
-			
+	
+	/* create notification when a new message is sended */
+	
 	@Override
 	public List<NotificationEntity> create() {
 		List<NotificationEntity> notifications = new ArrayList<NotificationEntity>();

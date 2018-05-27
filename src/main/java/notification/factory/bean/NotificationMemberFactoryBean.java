@@ -17,6 +17,13 @@ import dao.local.NotificationDaoLocal;
 import notification.constants.EnumTopicNotification;
 import notification.factory.local.NotificationMemberFactoryLocal;
 
+/**
+ * Bean to create notification concerning member
+ * 
+ * @author lavive
+ *
+ */
+
 @Singleton
 @TransactionAttribute
 public class NotificationMemberFactoryBean implements NotificationMemberFactoryLocal {
@@ -45,6 +52,7 @@ public class NotificationMemberFactoryBean implements NotificationMemberFactoryL
 		this.memberLeaving = member;
 	}
 	
+	/* create notifications, new member, member leaving and welcome to the new member */
 	@Override
 	public List<NotificationEntity> create() {
 		List<NotificationEntity> notifications = new ArrayList<NotificationEntity>();
