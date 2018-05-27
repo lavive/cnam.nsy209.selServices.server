@@ -31,6 +31,14 @@ import shared.dto.WealthSheetDto;
 import shared.transform.DtoToEntity;
 import shared.transform.EntityToDto;
 
+/**
+ * bean façade  to provide services to clients
+ * 
+ * @author lavive
+ * 
+ *
+ **/
+
 @Stateless
 @TransactionAttribute
 public class ServicesDaoBean implements ServicesDao {
@@ -55,9 +63,6 @@ public class ServicesDaoBean implements ServicesDao {
 	
 	@EJB
 	private SupplyDemandDaoLocal supplyDemandDao;
-	
-//	@EJB
-//	private MemberJoinNotificationsDaoLocal MemberJoinNotificationsDao;
 
 	
 	/* create */
@@ -102,14 +107,6 @@ public class ServicesDaoBean implements ServicesDao {
 		notificationDao.addNotificationToMember(notification.getId(),member.getId());
 		
 	}
-
-//	@Override
-//	public void createMemberJoinNotifications(MemberJoinNotificationsDto memberJoinNotifications) {
-//		MemberJoinNotificationsDao.create(
-//				DtoToEntity.memberJoinNotificationsDtoToEntity(memberJoinNotifications));
-//		
-//	}
-
 	
 	
 	
@@ -454,24 +451,6 @@ public class ServicesDaoBean implements ServicesDao {
 		
 		return EntityToDto.transactionEntityToDto(wealthsheetDao.getTransaction(transactionId));
 	}
-	
-	/* REST */
-
-
-//	@Override
-//	public JSONObject getAllMembersRest() {
-//		JSONObject jObject = new JSONObject();
-//		JSONArray jArray = new JSONArray();
-//		List<MemberEntity> members = memberDao.getAllMembers();
-//		for(MemberEntity memberEntity:members) {
-//			jArray.put(EntityToJSON.memberEntityToJSON(memberEntity));
-//		}
-//		jObject.put("allMembers", jArray);
-//		
-//		return jObject;
-//	}
-
-	
 	
 	
 	
