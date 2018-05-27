@@ -7,6 +7,13 @@ import javax.ejb.Local;
 import dao.entity.NotificationEntity;
 import notification.suscriber.local.SuscriberLocal;
 
+/**
+ * Bean to send notification to subscribers
+ * 
+ * @author lavive
+ *
+ */
+
 @Local
 public interface MediatorLocal {
 	
