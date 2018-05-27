@@ -10,6 +10,13 @@ import dao.entity.NotificationEntity;
 import notification.mediator.local.MediatorLocal;
 import notification.suscriber.local.SuscriberLocal;
 
+/**
+ * Bean to send notification to subscribers
+ * 
+ * @author lavive
+ *
+ */
+
 @Singleton
 public class MediatorBean implements MediatorLocal {
 
