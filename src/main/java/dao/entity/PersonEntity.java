@@ -11,6 +11,13 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+/**
+ *Generic Entity Bean Person 
+ * 
+ * @author lavive
+ *
+ */
+
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "person")

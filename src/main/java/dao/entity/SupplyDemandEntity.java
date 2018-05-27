@@ -12,6 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ *Entity Bean Supply Demand
+ * 
+ * @author lavive
+ *
+ */
+
 @Entity
 @Table(name = "supply_demand")
 public class SupplyDemandEntity implements SelServicesEntity {

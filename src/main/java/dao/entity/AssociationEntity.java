@@ -5,6 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+/**
+ *Entity Bean Association
+ * 
+ * @author lavive
+ *
+ */
 
 @Entity
 @PrimaryKeyJoinColumn(name="id_person")

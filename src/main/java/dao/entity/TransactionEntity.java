@@ -12,6 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ *Entity Bean Transaction
+ * 
+ * @author lavive
+ *
+ */
+
 @Entity
 @Table(name = "transaction")
 public class TransactionEntity implements SelServicesEntity {

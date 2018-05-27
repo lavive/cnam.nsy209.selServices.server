@@ -18,6 +18,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ *Entity Bean Notification
+ * 
+ * @author lavive
+ *
+ */
+
 @Entity
 @Table(name = "notification")
 public class NotificationEntity implements SelServicesEntity{

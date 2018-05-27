@@ -18,6 +18,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ *Entity Bean WealthSheet
+ * 
+ * @author lavive
+ *
+ */
+
 @Entity
 @Table(name = "wealth_sheet")
 public class WealthSheetEntity implements SelServicesEntity {
@@ -36,8 +43,6 @@ public class WealthSheetEntity implements SelServicesEntity {
 	@Column(name = "final_account", nullable = false)
 	private BigDecimal finalAccount;
 
-//	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-//	@JoinColumn(name = "wealth_sheet_id")
 	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinTable(name = "wealthSheet_transaction",joinColumns = @JoinColumn(name = "wealthSheet_id"),
               inverseJoinColumns = @JoinColumn(name = "transaction_id"))

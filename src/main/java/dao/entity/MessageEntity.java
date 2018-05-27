@@ -12,6 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ *Entity Bean Message
+ * 
+ * @author lavive
+ *
+ */
+
 
 @Entity
 @Table(name = "message")
@@ -21,10 +28,6 @@ public class MessageEntity implements SelServicesEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Long id;
-	
-//	@OneToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name = "message_subject_id")
-//	private MessageSubjectEntity subject;
 
 	@Column(name = "text", nullable = false, length = 500)
 	private String text;
@@ -32,15 +35,9 @@ public class MessageEntity implements SelServicesEntity {
 	@Column(name = "title", nullable = false, length = 200)
 	private String title;
 	
-//	@Column(name = "state")
-//	private boolean state;
-	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "person_id")
 	private PersonEntity transmitterPerson;
-	
-//	@Column(name = "date", nullable = false)
-//	private Date date;
 
 	@Column(name = "active", nullable = false)
 	private boolean active;
@@ -58,14 +55,6 @@ public class MessageEntity implements SelServicesEntity {
 		this.id = id;
 	}
 
-//	public MessageSubjectEntity getSubject() {
-//		return subject;
-//	}
-//
-//	public void setSubject(MessageSubjectEntity subject) {
-//		this.subject = subject;
-//	}
-
 	public String getText() {
 		return text;
 	}
@@ -82,14 +71,6 @@ public class MessageEntity implements SelServicesEntity {
 		this.title = title;
 	}
 
-//	public boolean isState() {
-//		return state;
-//	}
-//
-//	public void setState(boolean state) {
-//		this.state = state;
-//	}
-
 	public PersonEntity getTransmitterPerson() {
 		return transmitterPerson;
 	}
@@ -97,14 +78,6 @@ public class MessageEntity implements SelServicesEntity {
 	public void setTransmitterPerson(PersonEntity person) {
 		this.transmitterPerson = person;
 	}
-
-//	public Date getDate() {
-//		return date;
-//	}
-//
-//	public void setDate(Date date) {
-//		this.date = date;
-//	}
 
 	public boolean isActive() {
 		return active;

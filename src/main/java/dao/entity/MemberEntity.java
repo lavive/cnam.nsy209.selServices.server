@@ -15,6 +15,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+/**
+ *Entity Bean Member
+ * 
+ * @author lavive
+ *
+ */
+
 
 @Entity
 @PrimaryKeyJoinColumn(name="id_person")

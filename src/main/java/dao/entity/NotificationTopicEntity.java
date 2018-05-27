@@ -10,6 +10,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ *Entity Bean Notification_topic
+ * 
+ * @author lavive
+ *
+ */
+
 @Entity
 @Table(name = "notification_topic")
 public class NotificationTopicEntity {
