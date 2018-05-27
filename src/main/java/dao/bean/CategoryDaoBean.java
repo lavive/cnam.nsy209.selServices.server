@@ -15,6 +15,13 @@ import dao.entity.CategoryEntity;
 import dao.local.CategoryDaoLocal;
 import notification.factory.local.NotificationFactory;
 
+/**
+ * Bean to manage CategoryEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Stateless
 @TransactionAttribute
 public class CategoryDaoBean implements CategoryDaoLocal {
@@ -31,6 +38,7 @@ public class CategoryDaoBean implements CategoryDaoLocal {
 	}
 
 	public CategoryEntity get(long id) {
+		/* API criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<CategoryEntity> query = builder.createQuery(CategoryEntity.class);
@@ -57,6 +65,7 @@ public class CategoryDaoBean implements CategoryDaoLocal {
 	}
 
 	public List<CategoryEntity> getCategories() {
+		/* API criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<CategoryEntity> query = builder.createQuery(CategoryEntity.class);
@@ -69,15 +78,16 @@ public class CategoryDaoBean implements CategoryDaoLocal {
 
 	@Override
 	public Date lastDateUpdate() {
+		/* API criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 
 		CriteriaQuery<CategoryEntity> query = builder.createQuery(CategoryEntity.class);
 		Root<CategoryEntity> root = query.from(CategoryEntity.class);
 		
-		//query.select(root).where(builder.greatest(builder.in(root.get("dateLastUpdate"))));
 		query.select(root);
 		query.orderBy(builder.desc(root.get("dateLastUpdate")));
 		
+		/* get the first date */
 		List<CategoryEntity> entities = this.entityManager.createQuery(query).getResultList();
 		if(!entities.isEmpty()) {
 			CategoryEntity entity = entities.get(0);		
@@ -90,7 +100,7 @@ public class CategoryDaoBean implements CategoryDaoLocal {
 
 	@Override
 	public NotificationFactory getNotificationFactory() {
-
+		/* no need notifications */
 		return null;
 	}
 

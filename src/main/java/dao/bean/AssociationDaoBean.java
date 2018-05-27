@@ -22,6 +22,13 @@ import dao.local.MemberDaoLocal;
 import notification.factory.local.NotificationAssociationFactoryLocal;
 import notification.factory.local.NotificationFactory;
 
+/**
+ * Bean to manage AssociationEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Stateless
 @TransactionAttribute
 public class AssociationDaoBean implements AssociationDaoLocal {
@@ -33,7 +40,7 @@ public class AssociationDaoBean implements AssociationDaoLocal {
 	private MemberDaoLocal memberDao;
 
 	@EJB
-	private NotificationAssociationFactoryLocal notificationFactory;
+	private NotificationAssociationFactoryLocal notificationFactory; //to create notifications
 	
 	public void create(AssociationEntity entity) {
 		entity.setActive(true);
@@ -50,18 +57,15 @@ public class AssociationDaoBean implements AssociationDaoLocal {
 
 	//@Interceptors({ notification.interceptor.AssociationInterceptorToNotify.class}) 
 	public void update(AssociationEntity entity) {
-//		AssociationEntity associationEntity = getAssociation();	
-//		if(entity.getId() != associationEntity.getId()){		
-//			updateAssociationEntity(associationEntity,entity);
-//			this.entityManager.remove(this.entityManager.merge(entity));
-//		} 
 		
-		
+		/* get infos for the notification */
 		this.notificationFactory.setMapAttributeValue(modifiedAttributes(entity));
+		
 		entity.setActive(true);
 		entity.setDateLastUpdate(new Date(System.currentTimeMillis()));
 		this.entityManager.merge(entity);
 		
+		/* notification creation */
 		this.notificationFactory.create();
 		
 
@@ -79,6 +83,7 @@ public class AssociationDaoBean implements AssociationDaoLocal {
 	public AssociationEntity getAssociation() {
 		AssociationEntity resultEntity = null;
 		
+		/* API criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<AssociationEntity> query = builder.createQuery(AssociationEntity.class);
@@ -88,6 +93,7 @@ public class AssociationDaoBean implements AssociationDaoLocal {
 		
 		List<AssociationEntity> associations = this.entityManager.createQuery(query).getResultList();
 		
+		/* only one association */
 		if(!associations.isEmpty()){
 			int rank = 0;
 			for(AssociationEntity associationEntity:associations){
@@ -101,6 +107,7 @@ public class AssociationDaoBean implements AssociationDaoLocal {
 
 	@Override
 	public Date lastDateUpdate() {
+		/* API criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 
 		CriteriaQuery<AssociationEntity> query = builder.createQuery(AssociationEntity.class);
@@ -129,6 +136,7 @@ public class AssociationDaoBean implements AssociationDaoLocal {
 	public List<MemberEntity> checkIdAssociation(String login, String password, int number) {
 		List<AssociationEntity> resultAssociationEntity = null;
 		
+		/* API criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<AssociationEntity> query = builder.createQuery(AssociationEntity.class);
@@ -153,19 +161,8 @@ public class AssociationDaoBean implements AssociationDaoLocal {
 	
 	
 	/* helper methods */
-//	private void updateAssociationEntity(AssociationEntity target, AssociationEntity toCopy){
-//
-//		target.setName(toCopy.getName());
-//		target.setAddress(toCopy.getAddress());
-//		target.setPostalCode(toCopy.getPostalCode());
-//		target.setTown(toCopy.getTown());
-//		target.setEmail(toCopy.getEmail());
-//		target.setCellNumber(toCopy.getCellNumber());
-//		target.setPhoneNumber(toCopy.getPhoneNumber());
-//		target.setWebsite(toCopy.getWebsite());
-//		target.setActive(true);
-//		target.setDateLastUpdate(new Date(System.currentTimeMillis()));
-//	}
+
+	/* put modified association attributes in a Map */
 	private Map<EnumAssociationAttribute,String> modifiedAttributes(AssociationEntity association){
 		Map<EnumAssociationAttribute,String> result = new HashMap<EnumAssociationAttribute,String>();
 		AssociationEntity origin = getAssociation();

@@ -20,6 +20,13 @@ import dao.local.SupplyDemandDaoLocal;
 import notification.factory.local.NotificationFactory;
 import notification.factory.local.NotificationSupplyDemandFactoryLocal;
 
+/**
+ * Bean to manage SupplyDemandEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Stateless
 @TransactionAttribute
 public class SupplyDemandDaoBean implements SupplyDemandDaoLocal {
@@ -47,6 +54,7 @@ public class SupplyDemandDaoBean implements SupplyDemandDaoLocal {
 		member.getSupplyDemand().add(entity);
 		memberDao.update(member);
 		
+		/* notifications creation */		
 		if(entity.getType().equals(EnumSupplyDemand.DEMAND.getWording())) {
 			this.notificationFactory.setNewDemand(entity);
 		} else if(entity.getType().equals(EnumSupplyDemand.SUPPLY.getWording())) {
@@ -57,6 +65,7 @@ public class SupplyDemandDaoBean implements SupplyDemandDaoLocal {
 	}
 
 	public SupplyDemandEntity get(long id) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<SupplyDemandEntity> query = builder.createQuery(SupplyDemandEntity.class);
@@ -74,7 +83,7 @@ public class SupplyDemandDaoBean implements SupplyDemandDaoLocal {
 		
 		this.entityManager.merge(entity);		
 
-		
+		/* notifications creation */
 		if(entity.getType().equals(EnumSupplyDemand.DEMAND.getWording())) {
 			this.notificationFactory.setNewDemand(entity);
 		} else if(entity.getType().equals(EnumSupplyDemand.SUPPLY.getWording())) {
@@ -95,6 +104,7 @@ public class SupplyDemandDaoBean implements SupplyDemandDaoLocal {
 	}
 
 	public List<SupplyDemandEntity> getAllSupplyDemand() {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<SupplyDemandEntity> query = builder.createQuery(SupplyDemandEntity.class);
@@ -108,6 +118,7 @@ public class SupplyDemandDaoBean implements SupplyDemandDaoLocal {
 
 	@Override
 	public List<SupplyDemandEntity> getSuppliesDemands(String type) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<SupplyDemandEntity> query = builder.createQuery(SupplyDemandEntity.class);
@@ -125,12 +136,12 @@ public class SupplyDemandDaoBean implements SupplyDemandDaoLocal {
 
 	@Override
 	public Date lastDateUpdate() {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 
 		CriteriaQuery<SupplyDemandEntity> query = builder.createQuery(SupplyDemandEntity.class);
 		Root<SupplyDemandEntity> root = query.from(SupplyDemandEntity.class);
 		
-		//query.select(root).where(builder.greatest(builder.in(root.get("dateLastUpdate"))));
 		query.select(root);
 		query.orderBy(builder.desc(root.get("dateLastUpdate")));
 		

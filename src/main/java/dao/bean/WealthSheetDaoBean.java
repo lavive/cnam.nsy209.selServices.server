@@ -21,6 +21,13 @@ import dao.local.MemberDaoLocal;
 import dao.local.WealthSheetDaoLocal;
 import notification.factory.local.NotificationFactory;
 
+/**
+ * Bean to manage WealthSheetEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Stateless
 @TransactionAttribute
 public class WealthSheetDaoBean implements WealthSheetDaoLocal {
@@ -32,14 +39,11 @@ public class WealthSheetDaoBean implements WealthSheetDaoLocal {
 	private EntityManager entityManager;
 
 	public void create(WealthSheetEntity entity) {
-//		entity.setActive(true);
-//		entity.setDateLastUpdate(new Date(System.currentTimeMillis()));
-//		this.entityManager.persist(entity);
-//		this.entityManager.flush();
 
 	}
 
 	public WealthSheetEntity get(long id) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<WealthSheetEntity> query = builder.createQuery(WealthSheetEntity.class);
@@ -72,6 +76,7 @@ public class WealthSheetDaoBean implements WealthSheetDaoLocal {
 	}
 
 	public List<WealthSheetEntity> getAllWealthSheet() {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<WealthSheetEntity> query = builder.createQuery(WealthSheetEntity.class);
@@ -95,54 +100,7 @@ public class WealthSheetDaoBean implements WealthSheetDaoLocal {
 	}
 
 	public void addTransaction(TransactionEntity transactionEntity) {
-		//createTransaction(transactionEntity);
-				
-//		/* update creditor */
-//		transactionEntity.setActive(true);
-//		transactionEntity.setDateLastUpdate(new Date(System.currentTimeMillis()));
-//		MemberEntity creditor = memberDao.get(transactionEntity.getCreditorMember().getId());
-//		
-//		WealthSheetEntity wealthSheet = get(creditor.getWealthSheet().getId());
-//		wealthSheet.setFinalAccount(wealthSheet.getFinalAccount().add(transactionEntity.getAmount()));
-//		wealthSheet.getTransactions().add(getTransaction(transactionEntity.getId()));
-//		creditor.setWealthSheet(wealthSheet);
-		
-		
-		
-		
-//		WealthSheetEntity wealthSheetCreditor = creditor.getWealthSheet();
-//		List<TransactionEntity> transactionsCreditor = null;
-//		if(wealthSheetCreditor.getTransactions() == null) {
-//			transactionsCreditor = new ArrayList<TransactionEntity>();
-//			wealthSheetCreditor.setTransactions(transactionsCreditor);
-//		}
-//		transactionsCreditor = wealthSheetCreditor.getTransactions();
-//		transactionsCreditor.add(transactionEntity);
-//		wealthSheetCreditor.setFinalAccount(
-//				wealthSheetCreditor.getFinalAccount().add(transactionEntity.getAmount()));
-////		update(wealthSheetCreditor);
-////		wealthSheetCreditor.setActive(true);
-//		wealthSheetCreditor.setDateLastUpdate(new Date(System.currentTimeMillis()));
-//		//creditor.setWealthSheet(wealthSheetCreditor);
-//		this.entityManager.merge(creditor);
-		
-//		/* update debitor */
-//		MemberEntity debtor = transactionEntity.getDebtorMember();
-//		WealthSheetEntity wealthSheetDebtor = debtor.getWealthSheet();
-//		BigDecimal amount = transactionEntity.getAmount().multiply(new BigDecimal(-1));
-//		transactionEntity.setAmount(amount);
-//		List<TransactionEntity> transactionsDebtor = null;
-//		if(wealthSheetDebtor.getTransactions() == null) {
-//			transactionsDebtor = new ArrayList<TransactionEntity>();
-//			wealthSheetDebtor.setTransactions(transactionsDebtor);
-//		}
-//		transactionsDebtor = wealthSheetDebtor.getTransactions();
-//		transactionsDebtor.add(transactionEntity);
-//		wealthSheetDebtor.setFinalAccount(
-//				wealthSheetDebtor.getFinalAccount().add(transactionEntity.getAmount()));
-//		update(wealthSheetDebtor);
-//		debtor.setWealthSheet(wealthSheetDebtor);
-//		memberDao.update(debtor);
+
 
 	}
 
@@ -168,7 +126,7 @@ public class WealthSheetDaoBean implements WealthSheetDaoLocal {
 
 	@Override
 	public TransactionEntity getTransaction(long transactionId) {
-
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<TransactionEntity> query = builder.createQuery(TransactionEntity.class);
@@ -188,7 +146,6 @@ public class WealthSheetDaoBean implements WealthSheetDaoLocal {
 		CriteriaQuery<WealthSheetEntity> query = builder.createQuery(WealthSheetEntity.class);
 		Root<WealthSheetEntity> root = query.from(WealthSheetEntity.class);
 		
-		//query.select(root).where(builder.greatest(builder.in(root.get("dateLastUpdate"))));
 		query.select(root);
 		query.orderBy(builder.desc(root.get("dateLastUpdate")));
 		

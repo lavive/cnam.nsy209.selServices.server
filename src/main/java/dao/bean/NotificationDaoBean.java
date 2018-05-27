@@ -19,6 +19,13 @@ import dao.local.MemberDaoLocal;
 import dao.local.NotificationDaoLocal;
 import notification.factory.local.NotificationFactory;
 
+/**
+ * Bean to manage NotificationEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Stateless
 @TransactionAttribute
 public class NotificationDaoBean implements NotificationDaoLocal {
@@ -48,6 +55,7 @@ public class NotificationDaoBean implements NotificationDaoLocal {
 	}
 
 	public NotificationEntity get(long id) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<NotificationEntity> query = builder.createQuery(NotificationEntity.class);
@@ -103,12 +111,12 @@ public class NotificationDaoBean implements NotificationDaoLocal {
 
 	@Override
 	public Date lastDateUpdate() {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 
 		CriteriaQuery<NotificationEntity> query = builder.createQuery(NotificationEntity.class);
 		Root<NotificationEntity> root = query.from(NotificationEntity.class);
 		
-		//query.select(root).where(builder.greatest(builder.in(root.get("dateLastUpdate"))));
 		query.select(root);
 		query.orderBy(builder.desc(root.get("dateLastUpdate")));
 		

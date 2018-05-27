@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
-import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -21,6 +20,13 @@ import dao.local.MessageDaoLocal;
 import notification.factory.local.NotificationFactory;
 import notification.factory.local.NotificationMessageFactoryLocal;
 
+/**
+ * Bean to manage MessageEntity persistance
+ * 
+ * @author lavive
+ *
+ */
+
 @Stateless
 @TransactionAttribute
 public class MessageDaoBean implements MessageDaoLocal {
@@ -31,23 +37,24 @@ public class MessageDaoBean implements MessageDaoLocal {
 	@EJB
 	private NotificationMessageFactoryLocal notificationFactory;
 	
-//	@EJB
-//	private MemberDaoLocal memberDao;
 
 	//@Interceptors({ notification.interceptor.InterceptorToNotify.class}) 
 	public void create(MessageEntity entity) {
-
+		/* get infos for notification */
 		this.notificationFactory.setMessage(entity);
+		
 		entity.setActive(true);
 		entity.setDateLastUpdate(new Date(System.currentTimeMillis()));
 		this.entityManager.persist(entity);
 		this.entityManager.flush();
-		//this.notificationFactory.setMessage(entity);
+		
+		/* notification creation */
 		this.notificationFactory.create();
 
 	}
 
 	public MessageEntity get(long id) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MessageEntity> query = builder.createQuery(MessageEntity.class);
@@ -55,15 +62,19 @@ public class MessageDaoBean implements MessageDaoLocal {
 		
 		query.select(message).where(builder.equal(message.get("id"), (int) id));		
 				
-		/*MessageEntity messageEntity =*/ return this.entityManager.createQuery(query).getSingleResult();
+		return this.entityManager.createQuery(query).getSingleResult();
 	}
 
 	//@Interceptors({ notification.interceptor.InterceptorToNotify.class}) 
 	public void update(MessageEntity entity) {
+		/* get infos for notification */
 		this.notificationFactory.setMessage(entity);
+		
 		entity.setDateLastUpdate(new Date(System.currentTimeMillis()));
 		entity.setActive(true);
 		this.entityManager.merge(entity);
+		
+		/* notification creation */
 		this.notificationFactory.create();
 
 	}
@@ -75,17 +86,6 @@ public class MessageDaoBean implements MessageDaoLocal {
 		this.entityManager.merge(entity);
 
 	}
-
-//	public List<MessageEntity> getMessageByState(boolean state) {
-//		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-//		
-//		CriteriaQuery<MessageEntity> query = builder.createQuery(MessageEntity.class);
-//		Root<MessageEntity> message = query.from(MessageEntity.class);
-//		
-//		query.select(message).where(builder.equal(message.get("state"), state));		
-//				
-//		return this.entityManager.createQuery(query).getResultList();
-//	}
 
 	public List<MessageEntity> getMessages() {
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
@@ -100,6 +100,7 @@ public class MessageDaoBean implements MessageDaoLocal {
 	}
 
 	public List<MessageEntity> getMessages(PersonEntity personEntity) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MessageEntity> query = builder.createQuery(MessageEntity.class);
@@ -128,12 +129,12 @@ public class MessageDaoBean implements MessageDaoLocal {
 
 	@Override
 	public Date lastDateUpdate() {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 
 		CriteriaQuery<MessageEntity> query = builder.createQuery(MessageEntity.class);
 		Root<MessageEntity> root = query.from(MessageEntity.class);
 		
-		//query.select(root).where(builder.greatest(builder.in(root.get("dateLastUpdate"))));
 		query.select(root);
 		query.orderBy(builder.desc(root.get("dateLastUpdate")));
 		

@@ -18,8 +18,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import dao.constants.TablesName;
-import dao.entity.AssociationEntity;
-import dao.entity.CategoryEntity;
 import dao.entity.MemberEntity;
 import dao.entity.NotificationEntity;
 import dao.entity.SupplyDemandEntity;
@@ -34,7 +32,12 @@ import dao.local.WealthSheetDaoLocal;
 import notification.factory.local.NotificationFactory;
 import notification.factory.local.NotificationMemberFactoryLocal;
 
-
+/**
+ * Bean to manage MemberEntity persistance
+ * 
+ * @author lavive
+ *
+ */
 
 @Stateless
 @TransactionAttribute
@@ -92,12 +95,14 @@ public class MemberDaoBean implements MemberDaoLocal {
 		this.entityManager.persist(member);
 		this.entityManager.flush();
 		
+		/* notification creation */
 		this.notificationFactory.setNewMember(member);
 		this.notificationFactory.create();
 
 	}
 
 	public MemberEntity get(long id) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
@@ -119,9 +124,6 @@ public class MemberDaoBean implements MemberDaoLocal {
 		entityUpdated.setActive(true);
 		entityUpdated.setDateLastUpdate(new Date(System.currentTimeMillis()));
 		entityUpdated.setDateLastConsult(new Date(System.currentTimeMillis()));
-//		WealthSheetEntity wealthSheet = entity.getWealthSheet();
-//		wealthSheetDao.update(wealthSheet);
-//		entity.setWealthSheet(wealthSheet);
 		this.entityManager.merge(entityUpdated);
 
 	}
@@ -141,12 +143,14 @@ public class MemberDaoBean implements MemberDaoLocal {
 		entity.setSupplyDemand(supplyDemands);
 		this.entityManager.merge(entity);
 		
+		/* notification creation */
 		this.notificationFactory.setMemberLeaving(entity);
 		this.notificationFactory.create();
 
 	}
 
 	public List<MemberEntity> getListLastMember(int sizeList) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
@@ -169,6 +173,7 @@ public class MemberDaoBean implements MemberDaoLocal {
 	}
 
 	public List<MemberEntity> getAllMembers() {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
@@ -180,6 +185,7 @@ public class MemberDaoBean implements MemberDaoLocal {
 	}
 
 	public List<MemberEntity> getMembersByName(String name) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
@@ -196,15 +202,12 @@ public class MemberDaoBean implements MemberDaoLocal {
 	}
 
 	public List<MemberEntity> getMembersByNameAndForname(String name, String forname) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
 		Root<MemberEntity> member = query.from(MemberEntity.class);
-		
-//		Predicate clauseWhere = builder.conjunction();
-//		clauseWhere.getExpressions().add(builder.equal(member.get("name"), name));
-//		clauseWhere.getExpressions().add(builder.equal(member.get("forname"), forname));
-		
+				
 		query.select(member).where(builder.and(
 				builder.equal(
 						builder.upper(builder.trim(member.get("name"))),
@@ -218,7 +221,9 @@ public class MemberDaoBean implements MemberDaoLocal {
 		
 	}
 
+	/* get members by several attributes */
 	public List<MemberEntity> getMembers(MemberEntity attributes) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
@@ -283,6 +288,7 @@ public class MemberDaoBean implements MemberDaoLocal {
 	}
 
 	public List<MemberEntity> getMembersByTown(String town) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
@@ -298,18 +304,13 @@ public class MemberDaoBean implements MemberDaoLocal {
 	}
 
 	public List<MemberEntity> getMembersBySupplyDemand(String type, String category) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
 		Root<MemberEntity> member = query.from(MemberEntity.class);
 		Join<MemberEntity,SupplyDemandEntity> memberSupplyDemand = member.join("supplyDemand",JoinType.LEFT);
-		
-//		Predicate clauseWhere = builder.conjunction();
-//		clauseWhere.getExpressions().add(builder.equal(memberSupplyDemand.get("type"), type));
-//		clauseWhere.getExpressions().add(builder.equal(memberSupplyDemand.get("category"), category));
-//		
-//		query.select(member).where(clauseWhere);
-		
+				
 		query.select(member).where(builder.and(
 				builder.equal(
 						builder.upper(builder.trim(memberSupplyDemand.get("type"))),
@@ -378,6 +379,7 @@ public class MemberDaoBean implements MemberDaoLocal {
 	}
 
 	public Long getId(String mobileId) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
@@ -393,6 +395,7 @@ public class MemberDaoBean implements MemberDaoLocal {
 	}
 
 	public Long getId(String mobileId,String cellNumber) {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 		
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
@@ -407,6 +410,7 @@ public class MemberDaoBean implements MemberDaoLocal {
 		
 	}
 
+	/* check if member needs to update some table (by date) */
 	public List<String> checkForUpdate(long id) {
 		
 		MemberEntity entity = get(id);
@@ -433,24 +437,6 @@ public class MemberDaoBean implements MemberDaoLocal {
 		if(dateToCompare.before(wealthSheetDao.lastDateUpdate())){
 			returnList.add(TablesName.WEALTHSHEET_TABLE);
 		}
-//		if(dateToCompare.before(maxDateAssociation())){
-//			returnList.add(TablesName.ASSOCIATION_TABLE);
-//		}
-//		if(dateToCompare.before(maxDateMember())){
-//			returnList.add(TablesName.MEMBER_TABLE);
-//		}
-//		if(dateToCompare.before(maxDateCategory())){
-//			returnList.add(TablesName.CATEGORY_TABLE);
-//		}
-//		if(dateToCompare.before(maxDateSupplyDemand())){
-//			returnList.add(TablesName.SUPPLYDEMAND_TABLE);
-//		}
-//		if(dateToCompare.before(maxDateNotification())){
-//			returnList.add(TablesName.NOTIFICATION_TABLE);
-//		}
-//		if(dateToCompare.before(maxDateWealthSheet())){
-//			returnList.add(TablesName.WEALTHSHEET_TABLE);
-//		}
 
 		return returnList;
 	}
@@ -471,6 +457,7 @@ public class MemberDaoBean implements MemberDaoLocal {
 
 	@Override
 	public Date lastDateUpdate() {
+		/* API Criteria use */
 		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
 
 		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
@@ -497,100 +484,7 @@ public class MemberDaoBean implements MemberDaoLocal {
 	}
 	
 	
-	/* helper methods */
-	
-	/* return the last udapte date of table */
-	
-	private Date maxDateAssociation(){
-		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-
-		CriteriaQuery<AssociationEntity> query = builder.createQuery(AssociationEntity.class);
-		
-		Root<AssociationEntity> root = query.from(AssociationEntity.class);
-		
-		query.select(root);
-		query.orderBy(builder.desc(root.get("dateLastUpdate")));
-		
-		
-		AssociationEntity entity = this.entityManager.createQuery(query).getResultList().get(0);
-		
-		return entity.getDateLastUpdate();
-	}
-	
-	private Date maxDateMember(){
-		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-
-		CriteriaQuery<MemberEntity> query = builder.createQuery(MemberEntity.class);
-		Root<MemberEntity> root = query.from(MemberEntity.class);
-		
-		//query.select(root).where(builder.greatest(builder.in(root.get("dateLastUpdate"))));
-		query.select(root);
-		query.orderBy(builder.desc(root.get("dateLastUpdate")));
-		
-		MemberEntity entity = this.entityManager.createQuery(query).getResultList().get(0);
-		
-		return entity.getDateLastUpdate();
-	}
-	
-	private Date maxDateSupplyDemand(){
-		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-
-		CriteriaQuery<SupplyDemandEntity> query = builder.createQuery(SupplyDemandEntity.class);
-		Root<SupplyDemandEntity> root = query.from(SupplyDemandEntity.class);
-		
-		//query.select(root).where(builder.greatest(builder.in(root.get("dateLastUpdate"))));
-		query.select(root);
-		query.orderBy(builder.desc(root.get("dateLastUpdate")));
-		
-		SupplyDemandEntity entity = this.entityManager.createQuery(query).getResultList().get(0);
-		
-		return entity.getDateLastUpdate();
-	}
-	
-	private Date maxDateCategory(){
-		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-
-		CriteriaQuery<CategoryEntity> query = builder.createQuery(CategoryEntity.class);
-		Root<CategoryEntity> root = query.from(CategoryEntity.class);
-		
-		//query.select(root).where(builder.greatest(builder.in(root.get("dateLastUpdate"))));
-		query.select(root);
-		query.orderBy(builder.desc(root.get("dateLastUpdate")));
-		
-		CategoryEntity entity = this.entityManager.createQuery(query).getResultList().get(0);
-		
-		return entity.getDateLastUpdate();
-	}
-	
-	private Date maxDateNotification(){
-		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-
-		CriteriaQuery<NotificationEntity> query = builder.createQuery(NotificationEntity.class);
-		Root<NotificationEntity> root = query.from(NotificationEntity.class);
-		
-		//query.select(root).where(builder.greatest(builder.in(root.get("dateLastUpdate"))));
-		query.select(root);
-		query.orderBy(builder.desc(root.get("dateLastUpdate")));
-		
-		NotificationEntity entity = this.entityManager.createQuery(query).getResultList().get(0);
-		
-		return entity.getDateLastUpdate();
-	}
-	
-	private Date maxDateWealthSheet(){
-		CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-
-		CriteriaQuery<WealthSheetEntity> query = builder.createQuery(WealthSheetEntity.class);
-		Root<WealthSheetEntity> root = query.from(WealthSheetEntity.class);
-		
-		//query.select(root).where(builder.greatest(builder.in(root.get("dateLastUpdate"))));
-		query.select(root);
-		query.orderBy(builder.desc(root.get("dateLastUpdate")));
-		
-		WealthSheetEntity entity = this.entityManager.createQuery(query).getResultList().get(0);
-		
-		return entity.getDateLastUpdate();
-	}
+	/* helper methods */	
 	
 	/* get values from updated entity */
 	
