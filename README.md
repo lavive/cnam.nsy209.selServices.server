@@ -29,8 +29,11 @@ CNAM NSY209 project 2018 - backend side for SEL Services
 * Select ‘PostgresqlPool’ as his Pool Name
 
 ### Process
-* Clone this project
-* import this project in Eclipse
+* Clone this project in zip file and extract
+* 'new maven project' in Eclipse
+* skip archetype selection
+* groupId: ***cnam.nsy209***, artifactId: ***selServices.server*** and finish
+* copy extracted project files in Eclipse project
 * Open 'persistence.xml’ file under 'META-INF' folder
 * change *<jta-data-source>jdbc/test</jta-data-source>* in *<jta-data-source>jdbc/yourDataBase</jta-data-source>*
 * change properties ‘javax.persistence.jdbc...’ according to your configurations above
